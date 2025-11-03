@@ -1,4 +1,4 @@
-import { CreateUserParams, SignInParams } from "@/type";
+import { CreateUserParams, SignInParams, User } from "@/type";
 import { Account, Avatars, Client, Databases, ID, Query } from "react-native-appwrite";
 
 export const appwriteConfig = {
@@ -66,7 +66,7 @@ export const getCurrentUser = async () => {
       ]
     )
     if(!currentUser) throw Error;
-    return currentUser.documents[0]
+    return currentUser.documents[0] as unknown as User
   } catch (error) {
     console.log(error)
     throw new Error(error as string)
